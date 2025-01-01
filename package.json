@@ -1,0 +1,29 @@
+{
+  "name": "compressing-js-demo",
+  "version": "1.0.0",
+  "description": "demo compressing js strategy",
+  "main": "index.js",
+  "author": "Alex Ian",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "clean": "rimraf dist/*",
+    "build": "webpack --mode production",
+    "build:compress": "rimraf dist/compress/* && webpack --mode production --env compress=true",
+    "build:brotli": "rimraf dist/brotli/* && webpack --mode production --env brotli=true",
+    "dev": "webpack serve --mode development --config webpack.config.dev.js",
+    "dev:compress": "webpack serve --mode development --env compress=true --config webpack.config.dev.js",
+    "dev:brotli": "webpack serve --mode development --env brotli=true --config webpack.config.dev.js"
+  },
+  "devDependencies": {
+    "brotli-webpack-plugin": "^1.1.0",
+    "compression": "^1.7.5",
+    "compression-webpack-plugin": "^11.1.0",
+    "html-webpack-plugin": "^5.6.3",
+    "rimraf": "^6.0.1",
+    "shrink-ray-current": "^4.1.3",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.0"
+  }
+}
