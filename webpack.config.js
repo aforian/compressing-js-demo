@@ -7,6 +7,7 @@ module.exports = function webpack(env, argv) {
   const nonMinify = env.nonMinify === "true";
   const isCompress = env.compress === "true";
   const isBrotli = env.brotli === "true";
+  const isSplitChunks = env.splitChunks === "true";
 
   function getFileName() {
     if (isCompress) {
@@ -51,6 +52,20 @@ module.exports = function webpack(env, argv) {
     },
     optimization: {
       minimize: !nonMinify,
+      ...(isSplitChunks && {
+        splitChunks: {
+          chunks: "initial",
+          cacheGroups: {
+            vendors: {
+              test: /[\\/]node_modules[\\/]/,
+              name: "vendors",
+              priority: 10,
+              enforce: true,
+              reuseExistingChunk: true,
+            },
+          },
+        },
+      }),
     },
     plugins: [
       new HtmlWebpackPlugin({

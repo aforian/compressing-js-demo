@@ -10,6 +10,7 @@
     "clean": "rimraf dist/*",
     "build:without-minify": "webpack --mode production --env nonMinify=true",
     "build": "webpack --mode production",
+    "build:split-chunks": "webpack --mode production --env splitChunks=true",
     "build:compress": "rimraf dist/compress/* && webpack --mode production --env compress=true",
     "build:brotli": "rimraf dist/brotli/* && webpack --mode production --env brotli=true",
     "dev": "webpack serve --mode development --config webpack.config.dev.js",
@@ -26,5 +27,8 @@
     "webpack": "^5.97.1",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.0"
+  },
+  "dependencies": {
+    "jquery": "^3.7.1"
   }
 }
