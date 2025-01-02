@@ -4,6 +4,7 @@ const BrotliPlugin = require("brotli-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = function webpack(env, argv) {
+  const nonMinify = env.nonMinify === "true";
   const isCompress = env.compress === "true";
   const isBrotli = env.brotli === "true";
 
@@ -49,7 +50,7 @@ module.exports = function webpack(env, argv) {
       },
     },
     optimization: {
-      minimize: true,
+      minimize: !nonMinify,
     },
     plugins: [
       new HtmlWebpackPlugin({
@@ -58,8 +59,8 @@ module.exports = function webpack(env, argv) {
         scriptLoading: "defer",
         inject: true,
         minify: {
-          removeComments: true,
-          collapseWhitespace: true,
+          removeComments: !nonMinify,
+          collapseWhitespace: !nonMinify,
         },
         templateParameters: {
           jsFile: isCompress ? `${getFileName()}.gz` : getFileName(),

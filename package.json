@@ -8,6 +8,7 @@
   "private": false,
   "scripts": {
     "clean": "rimraf dist/*",
+    "build:without-minify": "webpack --mode production --env nonMinify=true",
     "build": "webpack --mode production",
     "build:compress": "rimraf dist/compress/* && webpack --mode production --env compress=true",
     "build:brotli": "rimraf dist/brotli/* && webpack --mode production --env brotli=true",
